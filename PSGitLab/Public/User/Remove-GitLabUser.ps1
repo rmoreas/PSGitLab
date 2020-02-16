@@ -2,9 +2,10 @@ Function Remove-GitLabUser {
     [cmdletbinding(SupportsShouldProcess=$True,ConfirmImpact='High')]
     param(
         [ValidateNotNullOrEmpty()]
-        [Parameter(Mandatory=$true,
-                   ValueFromPipelineByPropertyName=$true)]
-        [string]$Username
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true)]
+        [string]$Username,
+
+        [switch]$HardDelete
     )
 
     BEGIN {}
@@ -19,8 +20,13 @@ Function Remove-GitLabUser {
                 URI="/users/$($UserInfo.ID)"
                 Method = 'DELETE'
             }
-    
-            if ( $PSCmdlet.ShouldProcess("Delete User $($UserInfo.Username)") ) {
+            if ($HardDelete) {
+                $Request.Body = @{'hard_delete'='true'}
+                $Action = 'Hard Delete'
+            } else {
+                $Action = 'Delete'
+            }
+            if ( $PSCmdlet.ShouldProcess("$Action User $($UserInfo.Username)") ) {
                 QueryGitLabAPI -Request $Request -ObjectType 'GitLab.User' | Out-Null
             }
     
