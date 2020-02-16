@@ -71,9 +71,8 @@ Function QueryGitLabAPI {
             }
             $Results += (Invoke-WebRequest @newRequest).Content | ConvertFrom-Json
         }
-    } catch {
-        $GitLabErrorText = "{0} - {1}" -f $webcontent.statuscode,$webcontent.StatusDescription
-        Write-Error -Message $GitLabErrorText
+    } catch [System.Net.WebException] {
+        Write-Error -Message $_.Exception.Message -Exception $_.Exception
     }
     finally {
         $ProgressPreference = 'Continue'
