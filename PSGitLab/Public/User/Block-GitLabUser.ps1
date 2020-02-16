@@ -24,18 +24,22 @@ Function Block-GitLabUser {
         Write-Verbose "$ID"
         switch ($PSCmdlet.ParameterSetName) {
             'ID' { $User = Get-GitLabUser -ID $ID }
-            'Email' { $User = Get-GitLabUser -ID $Email }
-            'Username' { $User = Get-GitLabUser -ID $Username }
+            'Email' { $User = Get-GitLabUser -Email $Email }
+            'Username' { $User = Get-GitLabUser -Username $Username }
         }
 
-        $request = @{
-            URI = "/users/$($User.ID)/block"
-            Method = 'POST'
-        }
+        if ($User -and $User.state -ne 'blocked') {
+            $request = @{
+                URI = "/users/$($User.ID)/block"
+                Method = 'POST'
+            }    
+            QueryGitLabAPI -Request $Request -ObjectType 'GitLab.User' | Out-Null
+            if ($Passthru.IsPresent) {
+                Get-GitLabUser -ID $User.ID
+            }
 
-        $null = QueryGitLabAPI -Request $Request -ObjectType 'GitLab.User'
-        if ($Passthru.IsPresent) {
-            Get-GitLabuser -id $User.ID
+        } elseif ($Passthru.IsPresent) {
+            $User
         }
 
     }
