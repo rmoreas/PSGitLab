@@ -14,19 +14,19 @@ Function Set-GitLabUser {
         [string]$Username,
 
         #[string]$NewEmail = $null,
-        [string]$Password = $null,
-        [string]$NewUsername = $null,
-        [string]$Name = $null,
-        [string]$SkypeID = $null,
-        [string]$LinkedIn = $null,
-        [string]$Twitter = $null,
-        [string]$WebsiteURL = $null,
-        [int]$ProjectsLimit = 0,
-        [switch]$Admin = $false,
-        [switch]$CanCreateGroup = $false,
-        [switch]$External = $false,
+        [string]$Password,
+        [string]$NewUsername,
+        [string]$Name,
+        [string]$SkypeID,
+        [string]$LinkedIn,
+        [string]$Twitter,
+        [string]$WebsiteURL,
+        [int]$ProjectsLimit,
+        [switch]$Admin,
+        [switch]$CanCreateGroup,
+        [switch]$External,
 
-        [switch]$Passthru = $false
+        [switch]$Passthru
     )
 
     switch ($PScmdlet.ParameterSetName ) {
@@ -38,14 +38,14 @@ Function Set-GitLabUser {
     $Body = @{}
 
     #if ($NewEmail -ne $null ) { $Body.Add('email',$NewEmail) }
-    if ($Password -ne $null ) { $Body.Add('password',$Password) }
-    if ($NewUsername -ne $null ) { $Body.Add('username',$NewUsername) }
-    if ($Name -ne $null ) { $Body.Add('name',$Name) }
-    if ($SkypeID -ne $null ) { $Body.Add('skype',$SkypeID) }
-    if ($LinkedIn -ne $null ) { $Body.Add('linkedin',$LinkedIn) }
-    if ($Twitter -ne $null ) { $Body.Add('twitter',$Twitter) }
-    if ($WebsiteURL -ne $null ) { $Body.Add('website_url',$WebsiteURL) }
-    if ($ProjectsLimit -ne 0 ) { $Body.Add('projects_limit',$ProjectsLimit) }
+    if ($PSBoundParameters.ContainsKey('Password')) { $Body.Add('password',$Password) }
+    if ($PSBoundParameters.ContainsKey('NewUsername')) { $Body.Add('username',$NewUsername) }
+    if ($PSBoundParameters.ContainsKey('Name')) { $Body.Add('name',$Name) }
+    if ($PSBoundParameters.ContainsKey('SkypeID')) { $Body.Add('skype',$SkypeID) }
+    if ($PSBoundParameters.ContainsKey('LinkedIn')) { $Body.Add('linkedin',$LinkedIn) }
+    if ($PSBoundParameters.ContainsKey('Twitter')) { $Body.Add('twitter',$Twitter) }
+    if ($PSBoundParameters.ContainsKey('WebsiteURL')) { $Body.Add('website_url',$WebsiteURL) }
+    if ($PSBoundParameters.ContainsKey('ProjectsLimit')) { $Body.Add('projects_limit',$ProjectsLimit) }
     if ($Admin.IsPresent ) { $Body.Add('admin','true') }
     if ($CanCreateGroup.IsPresent ) { $Body.Add('can_create_group','true') }
     if ($External.IsPresent ) { $Body.Add('external','true') }
