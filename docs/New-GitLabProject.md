@@ -32,32 +32,32 @@ New-GitlabProject -Name 'Fake'
 
 ## PARAMETERS
 
-### -name
-The name of the new project.
+### -builds_enabled
+Whether to turn on builds for the project.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: Path
+Aliases:
 
-Required: True
-Position: 1
-Default value: None
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -namespace
-Namespace for the new project (defaults to the current user's namespace).
+### -container_registry_enabled
+Whether to turn on the container registry.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 3
-Default value: None
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -71,7 +71,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -107,23 +107,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -builds_enabled
-Whether to turn on builds for the project.
+### -name
+The name of the new project.
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Path
 
-Required: False
-Position: Named
-Default value: False
+Required: True
+Position: 0
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -wiki_enabled
-Whether to turn on a wiki for the project.
+### -namespace
+Namespace for the new project (defaults to the current user's namespace).
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -public
+Whether the project should be public.
 
 ```yaml
 Type: SwitchParameter
@@ -152,36 +167,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -container_registry_enabled
-Whether to turn on the container registry.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -public
-Whether the project should be public.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -visibility_level
 Whether the project should be private, internal, or public.
 
@@ -189,16 +174,32 @@ Whether the project should be private, internal, or public.
 Type: String
 Parameter Sets: (All)
 Aliases:
+Accepted values: Private, Internal, Public
 
 Required: False
-Position: 5
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -wiki_enabled
+Whether to turn on a wiki for the project.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

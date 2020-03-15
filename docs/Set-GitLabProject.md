@@ -35,6 +35,21 @@ Get-GitLabProject  | Set-GitLabProject -Description 'Fake Description'
 
 ## PARAMETERS
 
+### -Description
+The description of the project.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ID
 The project ID.
 
@@ -65,24 +80,24 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Path
-Custom repository name for new project.
-By default generated based on name.
+### -Passthru
+Whether to return the project to the pipeline.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Description
-The description of the project.
+### -Path
+Custom repository name for new project.
+By default generated based on name.
 
 ```yaml
 Type: String
@@ -108,6 +123,7 @@ $public,
 Type: Object
 Parameter Sets: (All)
 Aliases: visibility_level
+Accepted values: Public, Internal, Private
 
 Required: False
 Position: Named
@@ -116,23 +132,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Passthru
-Whether to return the project to the pipeline.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -84,17 +84,17 @@ Get-GitLabGroup -Search 'ngetchell' -Archived
 
 ## PARAMETERS
 
-### -Id
-The ID of the group.
+### -All
+Return all groups.
 
 ```yaml
-Type: Int32
-Parameter Sets: Single
+Type: SwitchParameter
+Parameter Sets: All
 Aliases:
 
 Required: True
 Position: Named
-Default value: 0
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -114,17 +114,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Visibility
-Limit by visibility public, internal, or private.
+### -Id
+The ID of the group.
 
 ```yaml
-Type: Object
-Parameter Sets: Groups, Starred, All, Owned
+Type: Int32
+Parameter Sets: Single
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: None
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -137,41 +137,11 @@ Default is created_at.
 Type: Object
 Parameter Sets: Groups, Starred, All, Owned
 Aliases:
+Accepted values: id, name, path
 
 Required: False
 Position: Named
 Default value: Created_at
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Sort
-Return groups sorted in asc or desc order.
-Default is desc.
-
-```yaml
-Type: Object
-Parameter Sets: Groups, Starred, All, Owned
-Aliases:
-
-Required: False
-Position: Named
-Default value: Desc
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Search
-Return list of authorized groups matching the search criteria.
-
-```yaml
-Type: Object
-Parameter Sets: Groups, Starred, All, Owned
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -191,17 +161,34 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -All
-Return all groups.
+### -Search
+Return list of authorized groups matching the search criteria.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: All
+Type: Object
+Parameter Sets: Groups, Starred, All, Owned
 Aliases:
 
-Required: True
+Required: False
 Position: Named
-Default value: False
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Sort
+Return groups sorted in asc or desc order.
+Default is desc.
+
+```yaml
+Type: Object
+Parameter Sets: Groups, Starred, All, Owned
+Aliases:
+Accepted values: asc, desc
+
+Required: False
+Position: Named
+Default value: Desc
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -221,8 +208,24 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Visibility
+Limit by visibility public, internal, or private.
+
+```yaml
+Type: Object
+Parameter Sets: Groups, Starred, All, Owned
+Aliases:
+Accepted values: public, internal, private, none
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

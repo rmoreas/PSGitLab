@@ -95,32 +95,17 @@ Get-GitLabProject  -Id 59 -Sort asc
 
 ## PARAMETERS
 
-### -Id
-The ID or NAMESPACE/PROJECT_NAME of the project.
+### -All
+Return all projects.
 
 ```yaml
-Type: Int32
-Parameter Sets: Single
+Type: SwitchParameter
+Parameter Sets: All
 Aliases:
 
 Required: True
 Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -GroupId
-The ID of the group to list projects.
-
-```yaml
-Type: Int32
-Parameter Sets: PerGroup
-Aliases:
-
-Required: True
-Position: Named
-Default value: 0
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -140,17 +125,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Visibility
-Limit by visibility public, internal, or private.
+### -GroupId
+The ID of the group to list projects.
 
 ```yaml
-Type: Object
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Type: Int32
+Parameter Sets: PerGroup
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: None
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Id
+The ID or NAMESPACE/PROJECT_NAME of the project.
+
+```yaml
+Type: Int32
+Parameter Sets: Single
+Aliases:
+
+Required: True
+Position: Named
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -163,41 +163,11 @@ Default is created_at.
 Type: Object
 Parameter Sets: Projects, PerGroup, Starred, All, Owned
 Aliases:
+Accepted values: id, name, path, created_at, updated_at, last_activity_at
 
 Required: False
 Position: Named
 Default value: Created_at
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Sort
-Return projects sorted in asc or desc order.
-Default is desc.
-
-```yaml
-Type: Object
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
-Aliases:
-
-Required: False
-Position: Named
-Default value: Desc
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Search
-Return list of authorized projects matching the search criteria.
-
-```yaml
-Type: Object
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -217,17 +187,34 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -All
-Return all projects.
+### -Search
+Return list of authorized projects matching the search criteria.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: All
+Type: Object
+Parameter Sets: Projects, PerGroup, Starred, All, Owned
 Aliases:
 
-Required: True
+Required: False
 Position: Named
-Default value: False
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Sort
+Return projects sorted in asc or desc order.
+Default is desc.
+
+```yaml
+Type: Object
+Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Aliases:
+Accepted values: asc, desc
+
+Required: False
+Position: Named
+Default value: Desc
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -247,8 +234,24 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Visibility
+Limit by visibility public, internal, or private.
+
+```yaml
+Type: Object
+Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Aliases:
+Accepted values: public, internal, private, none
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

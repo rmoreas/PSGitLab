@@ -41,21 +41,6 @@ Get-GitLabMergeRequest -ProjectId 1 -Id 20
 
 ## PARAMETERS
 
-### -ProjectId
-The ID of a project
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Id
 The ID of the merge request your retrieving.
 
@@ -86,8 +71,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -State
-Return all requests or just those that are merged, opened or closed.
+### -OrderBy
+Return requests ordered by created_at or updated_at fields.
+Default is created_at.
 
 ```yaml
 Type: String
@@ -101,16 +87,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OrderBy
-Return requests ordered by created_at or updated_at fields.
-Default is created_at.
+### -ProjectId
+The ID of a project
 
 ```yaml
 Type: String
-Parameter Sets: MergeRequests
+Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -133,8 +118,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -State
+Return all requests or just those that are merged, opened or closed.
+
+```yaml
+Type: String
+Parameter Sets: MergeRequests
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

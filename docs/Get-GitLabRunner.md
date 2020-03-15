@@ -55,12 +55,12 @@ Get-GitLabRunner -Id 4
 
 ## PARAMETERS
 
-### -Id
-The ID of the runner.
+### -All
+Return all available runners.
 
 ```yaml
-Type: Int32
-Parameter Sets: Single
+Type: SwitchParameter
+Parameter Sets: All
 Aliases:
 
 Required: True
@@ -70,12 +70,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ProjectId
-The ID of the project for which to list all runners.
+### -Id
+The ID of the runner.
 
 ```yaml
 Type: Int32
-Parameter Sets: Project
+Parameter Sets: Single
 Aliases:
 
 Required: True
@@ -100,12 +100,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -All
-Return all available runners.
+### -ProjectId
+The ID of the project for which to list all runners.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: All
+Type: Int32
+Parameter Sets: Project
 Aliases:
 
 Required: True
@@ -122,6 +122,7 @@ Limits the scope of runners to return.
 Type: Object
 Parameter Sets: Owned, All
 Aliases:
+Accepted values: active, paused, online
 
 Required: False
 Position: Named
@@ -131,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

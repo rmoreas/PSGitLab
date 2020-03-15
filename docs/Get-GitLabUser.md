@@ -19,7 +19,7 @@ Get-GitLabUser [-All] [<CommonParameters>]
 
 ### ID
 ```
-Get-GitLabUser [-ID <String>] [<CommonParameters>]
+Get-GitLabUser [-ID <Int32>] [<CommonParameters>]
 ```
 
 ### Username
@@ -64,21 +64,6 @@ Get-GitLabUser -Email 'fake@domain.com'
 
 ## PARAMETERS
 
-### -ID
-The user ID.
-
-```yaml
-Type: String
-Parameter Sets: ID
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -All
 Return back all users.
 
@@ -90,36 +75,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Username
-Return user by username.
-
-```yaml
-Type: String
-Parameter Sets: Username
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Email
-Return user by email.
-
-```yaml
-Type: String
-Parameter Sets: Email
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -139,8 +94,53 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Email
+Return user by email.
+
+```yaml
+Type: String
+Parameter Sets: Email
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ID
+The user ID.
+
+```yaml
+Type: Int32
+Parameter Sets: ID
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Username
+Return user by username.
+
+```yaml
+Type: String
+Parameter Sets: Username
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

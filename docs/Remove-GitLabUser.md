@@ -1,6 +1,6 @@
 ---
 external help file: PSGitLab-help.xml
-Module Name: PsGitlab
+Module Name: PSGitLab
 online version:
 schema: 2.0.0
 ---

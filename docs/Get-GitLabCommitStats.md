@@ -101,6 +101,33 @@ Week Sun Mon Tue Wed Thu Fri Sat WeeklyTotal RunningTotal
 
 ## PARAMETERS
 
+### -All
+Show all commits.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: AllBothDate, AllADate, AllBDate, AllLastYear, AllAuth, All
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: AllByAuthor
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Id
 The ID of the commit.
 
@@ -128,29 +155,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -All
-Show all commits.
+### -afterDate
+Only show commit stats after a certain date.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: AllBothDate, AllADate, AllBDate, AllLastYear, AllAuth, All
+Type: DateTime
+Parameter Sets: IdBothDate, IdADate, AllBothDate, AllADate
 Aliases:
 
 Required: True
 Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: AllByAuthor
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -197,12 +212,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -afterDate
-Only show commit stats after a certain date.
+### -byAuthor
+{{Fill byAuthor Description}}
 
 ```yaml
-Type: DateTime
-Parameter Sets: IdBothDate, IdADate, AllBothDate, AllADate
+Type: SwitchParameter
+Parameter Sets: IdByAuthor, AllByAuthor
 Aliases:
 
 Required: True
@@ -227,23 +242,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -byAuthor
-{{Fill byAuthor Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: IdByAuthor, AllByAuthor
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
