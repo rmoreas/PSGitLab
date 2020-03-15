@@ -22,9 +22,9 @@ Function Set-GitLabUser {
         [string]$Twitter,
         [string]$WebsiteURL,
         [int]$ProjectsLimit,
-        [switch]$Admin,
-        [switch]$CanCreateGroup,
-        [switch]$External,
+        [bool]$Admin,
+        [bool]$CanCreateGroup,
+        [bool]$External,
 
         [switch]$Passthru
     )
@@ -46,9 +46,9 @@ Function Set-GitLabUser {
     if ($PSBoundParameters.ContainsKey('Twitter')) { $Body.Add('twitter',$Twitter) }
     if ($PSBoundParameters.ContainsKey('WebsiteURL')) { $Body.Add('website_url',$WebsiteURL) }
     if ($PSBoundParameters.ContainsKey('ProjectsLimit')) { $Body.Add('projects_limit',$ProjectsLimit) }
-    if ($Admin.IsPresent ) { $Body.Add('admin','true') }
-    if ($CanCreateGroup.IsPresent ) { $Body.Add('can_create_group','true') }
-    if ($External.IsPresent ) { $Body.Add('external','true') }
+    if ($PSBoundParameters.ContainsKey('Admin')) { $Body.Add('admin',$Admin) }
+    if ($PSBoundParameters.ContainsKey('CanCreateGroup')) { $Body.Add('can_create_group',$CanCreateGroup) }
+    if ($PSBoundParameters.ContainsKey('External')) { $Body.Add('external',$External) }
 
     $Request = @{
         URI = "/users/$($User.ID)"
