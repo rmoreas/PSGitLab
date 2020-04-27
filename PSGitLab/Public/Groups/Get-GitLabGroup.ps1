@@ -1,120 +1,69 @@
 Function Get-GitLabGroup
 {
-  [cmdletbinding(DefaultParameterSetName = 'Groups')]
+  [cmdletbinding(DefaultParameterSetName = 'All')]
   [OutputType("GitLab.Group")]
   param(
 
     [Parameter(ParameterSetName = 'Single',
       Mandatory = $true)]
+    [Parameter(ParameterSetName = 'Subgroups',
+      Mandatory = $true)]
     [int]$Id,
 
-    [Parameter(Mandatory = $false,
-      ParameterSetName = 'Groups',
-      HelpMessage = 'Return only archived groups')]
-    [Parameter(Mandatory = $false,
-      ParameterSetName = 'Owned',
-      HelpMessage = 'Return only archived groups')]
-    [Parameter(Mandatory = $false,
-      ParameterSetName = 'All',
-      HelpMessage = 'Return only archived groups')]
-    [Parameter(Mandatory = $false,
-      ParameterSetName = 'Starred',
-      HelpMessage = 'Return only archived groups')]
-    [switch]$Archived = $false,
+    [Parameter(ParameterSetName = 'Subgroups',
+      Mandatory = $true)]
+    [switch]$Subgroups,
 
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Limit by visibility',
-      ParameterSetName = 'Groups')]
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Limit by visibility',
-      ParameterSetName = 'Owned')]
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Limit by visibility',
-      ParameterSetName = 'All')]
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Limit by visibility',
-      ParameterSetName = 'Starred')]
-    [ValidateSet("public", "internal", "private", "none")]
-    $Visibility = 'none',
-
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Choose the order in which groups are returned.',
-      ParameterSetName = 'Groups')]
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Choose the order in which groups are returned.',
-      ParameterSetName = 'Owned')]
     [Parameter(Mandatory = $false,
       HelpMessage = 'Choose the order in which groups are returned.',
       ParameterSetName = 'All')]
     [Parameter(Mandatory = $false,
       HelpMessage = 'Choose the order in which groups are returned.',
-      ParameterSetName = 'Starred')]
+      ParameterSetName = 'Subgroups')]
     [ValidateSet('id', 'name', 'path')]
     $Order_by = 'name',
 
-
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Ascending or Descending',
-      ParameterSetName = 'Groups')]
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Ascending or Descending',
-      ParameterSetName = 'Owned')]
     [Parameter(Mandatory = $false,
       HelpMessage = 'Ascending or Descending',
       ParameterSetName = 'All')]
     [Parameter(Mandatory = $false,
       HelpMessage = 'Ascending or Descending',
-      ParameterSetName = 'Starred')]
+      ParameterSetName = 'Subgroups')]
     [ValidateSet('asc', 'desc')]
     $Sort = 'desc',
 
     [Parameter(Mandatory = $false,
-      HelpMessage = 'Search for a project.',
-      ParameterSetName = 'Groups')]
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Search for a project.',
-      ParameterSetName = 'Owned')]
-    [Parameter(Mandatory = $false,
-      HelpMessage = 'Search for a project.',
+      HelpMessage = 'Search for a group.',
       ParameterSetName = 'All')]
     [Parameter(Mandatory = $false,
-      HelpMessage = 'Search for a project.',
-      ParameterSetName = 'Starred')]
+      HelpMessage = 'Search for a group.',
+      ParameterSetName = 'Subgroups')]
     $Search,
 
-    [Parameter(ParameterSetName = 'Owned',
-      Mandatory = $true)]
-    [switch]$Owned,
-
     [Parameter(ParameterSetName = 'All',
-      Mandatory = $true)]
-    [switch]$All,
-
-    [Parameter(ParameterSetName = 'Starred',
-      Mandatory = $true)]
-    [switch]$Starred
+      Mandatory = $false)]
+    [Parameter(ParameterSetName = 'Subgroups',
+      Mandatory = $false)]
+    [switch]$Owned
 
   )
 
-  if ($PSCmdlet.ParameterSetName -ne 'Single')
-  {
+  if ($PSCmdlet.ParameterSetName -ne 'Single') {
     Write-Verbose "Create GET Request"
     $GetUrlParameters = @()
-    if ($archived)
-    {
-      $GetUrlParameters += @{archived = 'true'}
-    }
 
-    if ($search -ne $null)
-    {
+    if ($search -ne $null) {
       $GetUrlParameters += @{search = $search}
     }
+    if ($Owned) {
+      $GetUrlParameters += @{owned='true'}
+    }
+
     $GetUrlParameters += @{order_by = $order_by}
     $GetUrlParameters += @{sort = $sort}
     $URLParameters = GetMethodParameters -GetURLParameters $GetUrlParameters
     #$Request.URI = "$($Request.URI)" + "$URLParameters"
   }
-
 
   $Request = @{
     URI    = ''
@@ -125,11 +74,9 @@ Function Get-GitLabGroup
 
   switch ($PSCmdlet.ParameterSetName)
   {
-    Groups { $Request.URI = "/groups$URLParameters"; break; }
-    Owned { $Request.URI = "/groups/owned$URLParameters"; break; }
-    All { $Request.URI = "/groups/all$URLParameters"; break; }
-    Starred { $Request.URI = "/groups/starred$URLParameters"; break; }
+    All { $Request.URI = "/groups$URLParameters"; break; }
     Single { $Request.URI = "/groups/$Id"; break; }
+    Subgroups { $Request.URI = "/groups/$Id/subgroups$URLParameters"; break; }
     default { Write-Error "Incorrect parameter set."; break; }
 
   }
