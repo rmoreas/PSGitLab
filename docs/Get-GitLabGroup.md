@@ -12,33 +12,21 @@ Retrieve all groups in a GitLab instance.
 
 ## SYNTAX
 
-### Groups (Default)
+### All (Default)
 ```
-Get-GitLabGroup [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
+Get-GitLabGroup [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>] [-Owned]
  [<CommonParameters>]
+```
+
+### Subgroups
+```
+Get-GitLabGroup -Id <Int32> [-Subgroups] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>]
+ [-Search <Object>] [-Owned] [<CommonParameters>]
 ```
 
 ### Single
 ```
 Get-GitLabGroup -Id <Int32> [<CommonParameters>]
-```
-
-### Starred
-```
-Get-GitLabGroup [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
- [-Starred] [<CommonParameters>]
-```
-
-### All
-```
-Get-GitLabGroup [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
- [-All] [<CommonParameters>]
-```
-
-### Owned
-```
-Get-GitLabGroup [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
- [-Owned] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,72 +42,27 @@ Get-GitLabGroup
 
 ### EXAMPLE 2
 ```
-Get-GitLabGroup -All
+Get-GitLabGroup -Owned
 ```
 
 ### EXAMPLE 3
 ```
-Get-GitLabGroup -Owned
+Get-GitLabGroup -Id 4
 ```
 
 ### EXAMPLE 4
 ```
-Get-GitLabGroup -Id 4
-```
-
-### EXAMPLE 5
-```
-Get-GitLabGroup -Archived
-```
-
-### EXAMPLE 6
-```
-Get-GitLabGroup -Starred
-```
-
-### EXAMPLE 7
-```
-Get-GitLabGroup -Search 'ngetchell' -Archived
+Get-GitLabGroup -Search 'ngetchell' -Owned
 ```
 
 ## PARAMETERS
-
-### -All
-Return all groups.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: All
-Aliases:
-
-Required: True
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Archived
-Limit by archived status.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: Groups, Starred, All, Owned
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Id
 The ID of the group.
 
 ```yaml
 Type: Int32
-Parameter Sets: Single
+Parameter Sets: Subgroups, Single
 Aliases:
 
 Required: True
@@ -135,7 +78,7 @@ Default is created_at.
 
 ```yaml
 Type: Object
-Parameter Sets: Groups, Starred, All, Owned
+Parameter Sets: All, Subgroups
 Aliases:
 Accepted values: id, name, path
 
@@ -151,10 +94,10 @@ Return all owned groups.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Owned
+Parameter Sets: All, Subgroups
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -166,7 +109,7 @@ Return list of authorized groups matching the search criteria.
 
 ```yaml
 Type: Object
-Parameter Sets: Groups, Starred, All, Owned
+Parameter Sets: All, Subgroups
 Aliases:
 
 Required: False
@@ -182,7 +125,7 @@ Default is desc.
 
 ```yaml
 Type: Object
-Parameter Sets: Groups, Starred, All, Owned
+Parameter Sets: All, Subgroups
 Aliases:
 Accepted values: asc, desc
 
@@ -193,17 +136,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Starred
-Return all starred groups.
+### -Subgroups
+{{ Fill Subgroups Description }}
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Starred
+Parameter Sets: Subgroups
 Aliases:
 
 Required: True
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -213,9 +156,9 @@ Limit by visibility public, internal, or private.
 
 ```yaml
 Type: Object
-Parameter Sets: Groups, Starred, All, Owned
+Parameter Sets: All, Subgroups
 Aliases:
-Accepted values: public, internal, private, none
+Accepted values: public, internal, private
 
 Required: False
 Position: Named
