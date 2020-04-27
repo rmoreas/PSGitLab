@@ -12,39 +12,21 @@ Retrieve all projects in a GitLab instance.
 
 ## SYNTAX
 
-### Projects (Default)
+### All (Default)
 ```
 Get-GitLabProject [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
- [<CommonParameters>]
+ [-Owned] [-Starred] [-Statistics] [<CommonParameters>]
 ```
 
 ### Single
 ```
-Get-GitLabProject -Id <Int32> [<CommonParameters>]
+Get-GitLabProject -Id <Int32> [-Statistics] [<CommonParameters>]
 ```
 
 ### PerGroup
 ```
 Get-GitLabProject -GroupId <Int32> [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>]
- [-Search <Object>] [<CommonParameters>]
-```
-
-### Starred
-```
-Get-GitLabProject [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
- [-Starred] [<CommonParameters>]
-```
-
-### All
-```
-Get-GitLabProject [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
- [-All] [<CommonParameters>]
-```
-
-### Owned
-```
-Get-GitLabProject [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>]
- [-Owned] [<CommonParameters>]
+ [-Search <Object>] [-Owned] [-Starred] [-Statistics] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,62 +42,42 @@ Get-GitLabProject
 
 ### EXAMPLE 2
 ```
-Get-GitLabProject -All
+Get-GitLabProject -Owned
 ```
 
 ### EXAMPLE 3
 ```
-Get-GitLabProject -Owned
+Get-GitLabProject -Id 4
 ```
 
 ### EXAMPLE 4
 ```
-Get-GitLabProject -Id 4
+Get-GitLabProject -Archived
 ```
 
 ### EXAMPLE 5
 ```
-Get-GitLabProject -Archived
+Get-GitLabProject -Starred
 ```
 
 ### EXAMPLE 6
 ```
-Get-GitLabProject -Starred
-```
-
-### EXAMPLE 7
-```
 Get-GitLabProject -Search 'ngetchell' -Archived
 ```
 
-### EXAMPLE 8
+### EXAMPLE 7
 ```
 Get-GitLabProject  -Id 59 -Sort asc
 ```
 
 ## PARAMETERS
 
-### -All
-Return all projects.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: All
-Aliases:
-
-Required: True
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Archived
 Limit by archived status.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Parameter Sets: All, PerGroup
 Aliases:
 
 Required: False
@@ -161,7 +123,7 @@ Default is created_at.
 
 ```yaml
 Type: Object
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Parameter Sets: All, PerGroup
 Aliases:
 Accepted values: id, name, path, created_at, updated_at, last_activity_at
 
@@ -177,10 +139,10 @@ Return all owned projects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Owned
+Parameter Sets: All, PerGroup
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -192,7 +154,7 @@ Return list of authorized projects matching the search criteria.
 
 ```yaml
 Type: Object
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Parameter Sets: All, PerGroup
 Aliases:
 
 Required: False
@@ -208,7 +170,7 @@ Default is desc.
 
 ```yaml
 Type: Object
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Parameter Sets: All, PerGroup
 Aliases:
 Accepted values: asc, desc
 
@@ -224,12 +186,27 @@ Return all starred projects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Starred
+Parameter Sets: All, PerGroup
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Statistics
+Include project statistics
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -239,7 +216,7 @@ Limit by visibility public, internal, or private.
 
 ```yaml
 Type: Object
-Parameter Sets: Projects, PerGroup, Starred, All, Owned
+Parameter Sets: All, PerGroup
 Aliases:
 Accepted values: public, internal, private, none
 
