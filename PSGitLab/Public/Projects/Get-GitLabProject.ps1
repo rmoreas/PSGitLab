@@ -9,12 +9,18 @@ Function Get-GitLabProject {
         [Parameter(ParameterSetName='PerGroup',
                    Mandatory=$true)]
         [int]$GroupId,
+        [Parameter(ParameterSetName='PerUser',
+                   Mandatory=$true)]
+        [int]$UserId,
 
         [Parameter(Mandatory=$false,
                    ParameterSetName='All',
                    HelpMessage='Return only archived projects')]
         [Parameter(Mandatory=$false,
                    ParameterSetName='PerGroup',
+                   HelpMessage='Return only archived projects')]
+        [Parameter(Mandatory=$false,
+                   ParameterSetName='PerUser',
                    HelpMessage='Return only archived projects')]
         [switch]$Archived = $false,
 
@@ -24,6 +30,9 @@ Function Get-GitLabProject {
         [Parameter(Mandatory=$false,
                    HelpMessage='Limit by visibility',
                    ParameterSetName='PerGroup')]
+        [Parameter(Mandatory=$false,
+                   HelpMessage='Limit by visibility',
+                   ParameterSetName='PerUser')]
         [ValidateSet("public", "internal", "private","none")]
         $Visibility = 'none',
 
@@ -33,6 +42,9 @@ Function Get-GitLabProject {
         [Parameter(Mandatory=$false,
                    HelpMessage='Choose the order in which projects are returned.',
                    ParameterSetName='PerGroup')]
+        [Parameter(Mandatory=$false,
+                   HelpMessage='Choose the order in which projects are returned.',
+                   ParameterSetName='PerUser')]
         [ValidateSet('id','name','path','created_at','updated_at','last_activity_at')]
         $Order_by = 'created_at',
 
@@ -42,6 +54,9 @@ Function Get-GitLabProject {
         [Parameter(Mandatory=$false,
                    HelpMessage='Ascending or Descending',
                    ParameterSetName='PerGroup')]
+        [Parameter(Mandatory=$false,
+                   HelpMessage='Ascending or Descending',
+                   ParameterSetName='PerUser')]
         [ValidateSet('asc','desc')]
         $Sort = 'desc',
 
@@ -51,17 +66,24 @@ Function Get-GitLabProject {
         [Parameter(Mandatory=$false,
                    HelpMessage='Search for a project.',
                    ParameterSetName='PerGroup')]
+        [Parameter(Mandatory=$false,
+                   HelpMessage='Search for a project.',
+                   ParameterSetName='PerUser')]
         $Search,
 
         [Parameter(ParameterSetName='All',
                    Mandatory=$false)]
         [Parameter(ParameterSetName='PerGroup',
                     Mandatory=$false)]
+        [Parameter(ParameterSetName='PerUser',
+                    Mandatory=$false)]
         [switch]$Owned,
 
         [Parameter(ParameterSetName='All',
                    Mandatory=$false)]
         [Parameter(ParameterSetName='PerGroup',
+                    Mandatory=$false)]
+        [Parameter(ParameterSetName='PerUser',
                     Mandatory=$false)]
         [switch]$Starred,
 
@@ -114,6 +136,7 @@ Function Get-GitLabProject {
 
     switch ($PSCmdlet.ParameterSetName) {
         All { $Request.URI = "/projects$URLParameters"; break; }
+        PerUser { $Request.URI = "/users/$UserId/projects$URLParameters"; break; }
         PerGroup { $Request.URI = "/groups/$GroupId/projects$URLParameters"; break; }
         Single { $Request.URI="/projects/$Id$URLParameters"; break; }
         default { Write-Error "Incorrect parameter set."; break; }
