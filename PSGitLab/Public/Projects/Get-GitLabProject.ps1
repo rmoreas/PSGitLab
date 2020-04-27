@@ -109,8 +109,11 @@ Function Get-GitLabProject {
 
         [Parameter(ParameterSetName='Starred',
                    Mandatory=$true)]
-        [switch]$Starred
+        [switch]$Starred,
 
+        [Parameter(Mandatory=$false,
+                   HelpMessage='Include project statistics')]
+        [switch]$Statistics
     )
 
     if ($PSCmdlet.ParameterSetName -ne 'Single') {
@@ -129,8 +132,16 @@ Function Get-GitLabProject {
         $GetUrlParameters += @{order_by=$order_by}
         $GetUrlParameters += @{sort=$sort}
         $GetUrlParameters += @{per_page=100}
+        if ($Statistics) {
+            $GetUrlParameters += @{statistics=$true}
+        }
         $URLParameters = GetMethodParameters -GetURLParameters $GetUrlParameters
         #$Request.URI = "$($Request.URI)" + "$URLParameters"
+    } else {
+        $URLParameters = ''
+        if ($Statistics) {
+            $URLParameters = GetMethodParameters -GetURLParameters @{statistics=$true}
+        }
     }
 
 
@@ -147,7 +158,7 @@ Function Get-GitLabProject {
         Owned { $Request.URI = "/projects/owned$URLParameters"; break; }
         All { $Request.URI="/projects$URLParameters"; break; }
         Starred { $Request.URI="/projects/starred$URLParameters"; break; }
-        Single { $Request.URI="/projects/$Id"; break; }
+        Single { $Request.URI="/projects/$Id$URLParameters"; break; }
         default { Write-Error "Incorrect parameter set."; break; }
 
     }
