@@ -44,8 +44,11 @@ Function Get-GitLabGroup
       Mandatory = $false)]
     [Parameter(ParameterSetName = 'Subgroups',
       Mandatory = $false)]
-    [switch]$Owned
+    [switch]$Owned,
 
+    [Parameter(Mandatory=$false,
+      HelpMessage='Include group statistics')]
+    [switch]$Statistics
   )
 
   if ($PSCmdlet.ParameterSetName -ne 'Single') {
@@ -58,12 +61,20 @@ Function Get-GitLabGroup
     if ($Owned) {
       $GetUrlParameters += @{owned='true'}
     }
+    if ($Statistics) {
+      $GetUrlParameters += @{statistics=$true}
+    }
 
     $GetUrlParameters += @{order_by = $order_by}
     $GetUrlParameters += @{sort = $sort}
     $URLParameters = GetMethodParameters -GetURLParameters $GetUrlParameters
     #$Request.URI = "$($Request.URI)" + "$URLParameters"
-  }
+  } else {
+    $URLParameters = ''
+    if ($Statistics) {
+        $URLParameters = GetMethodParameters -GetURLParameters @{statistics=$true}
+    }
+}
 
   $Request = @{
     URI    = ''
@@ -75,7 +86,7 @@ Function Get-GitLabGroup
   switch ($PSCmdlet.ParameterSetName)
   {
     All { $Request.URI = "/groups$URLParameters"; break; }
-    Single { $Request.URI = "/groups/$Id"; break; }
+    Single { $Request.URI = "/groups/$Id$URLParameters"; break; }
     Subgroups { $Request.URI = "/groups/$Id/subgroups$URLParameters"; break; }
     default { Write-Error "Incorrect parameter set."; break; }
 

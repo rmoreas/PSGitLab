@@ -14,19 +14,19 @@ Retrieve all groups in a GitLab instance.
 
 ### All (Default)
 ```
-Get-GitLabGroup [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>] [-Owned]
+Get-GitLabGroup [-Order_by <Object>] [-Sort <Object>] [-Search <Object>] [-Owned] [-Statistics]
  [<CommonParameters>]
 ```
 
 ### Subgroups
 ```
-Get-GitLabGroup -Id <Int32> [-Subgroups] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>]
- [-Search <Object>] [-Owned] [<CommonParameters>]
+Get-GitLabGroup -Id <Int32> [-Subgroups] [-Order_by <Object>] [-Sort <Object>] [-Search <Object>] [-Owned]
+ [-Statistics] [<CommonParameters>]
 ```
 
 ### Single
 ```
-Get-GitLabGroup -Id <Int32> [<CommonParameters>]
+Get-GitLabGroup -Id <Int32> [-Statistics] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -136,6 +136,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Statistics
+Include group statistics
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Subgroups
 {{ Fill Subgroups Description }}
 
@@ -145,22 +160,6 @@ Parameter Sets: Subgroups
 Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Visibility
-Limit by visibility public, internal, or private.
-
-```yaml
-Type: Object
-Parameter Sets: All, Subgroups
-Aliases:
-Accepted values: public, internal, private
-
-Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
