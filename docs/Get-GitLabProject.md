@@ -29,6 +29,12 @@ Get-GitLabProject -GroupId <Int32> [-Archived] [-Visibility <Object>] [-Order_by
  [-Search <Object>] [-Owned] [-Starred] [-Statistics] [<CommonParameters>]
 ```
 
+### PerUser
+```
+Get-GitLabProject -UserId <Int32> [-Archived] [-Visibility <Object>] [-Order_by <Object>] [-Sort <Object>]
+ [-Search <Object>] [-Owned] [-Starred] [-Statistics] [<CommonParameters>]
+```
+
 ## DESCRIPTION
 Retrieve all projects in a GitLab instance.
 Queries over HTTP and gets back GitLab.Project type.
@@ -77,7 +83,7 @@ Limit by archived status.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: All, PerGroup
+Parameter Sets: All, PerGroup, PerUser
 Aliases:
 
 Required: False
@@ -123,7 +129,7 @@ Default is created_at.
 
 ```yaml
 Type: Object
-Parameter Sets: All, PerGroup
+Parameter Sets: All, PerGroup, PerUser
 Aliases:
 Accepted values: id, name, path, created_at, updated_at, last_activity_at
 
@@ -139,7 +145,7 @@ Return all owned projects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: All, PerGroup
+Parameter Sets: All, PerGroup, PerUser
 Aliases:
 
 Required: False
@@ -154,7 +160,7 @@ Return list of authorized projects matching the search criteria.
 
 ```yaml
 Type: Object
-Parameter Sets: All, PerGroup
+Parameter Sets: All, PerGroup, PerUser
 Aliases:
 
 Required: False
@@ -170,7 +176,7 @@ Default is desc.
 
 ```yaml
 Type: Object
-Parameter Sets: All, PerGroup
+Parameter Sets: All, PerGroup, PerUser
 Aliases:
 Accepted values: asc, desc
 
@@ -186,7 +192,7 @@ Return all starred projects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: All, PerGroup
+Parameter Sets: All, PerGroup, PerUser
 Aliases:
 
 Required: False
@@ -211,12 +217,27 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -UserId
+{{ Fill UserId Description }}
+
+```yaml
+Type: Int32
+Parameter Sets: PerUser
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Visibility
 Limit by visibility public, internal, or private.
 
 ```yaml
 Type: Object
-Parameter Sets: All, PerGroup
+Parameter Sets: All, PerGroup, PerUser
 Aliases:
 Accepted values: public, internal, private, none
 
